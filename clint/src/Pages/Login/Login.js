@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { showLoading , hideLoading } from '../../Redux/alertSlice'
+import instance from '../../Api/axios'
 
 
 function Login() {
@@ -24,7 +25,7 @@ function Login() {
   const onSubmit = async (values) => {
     try{
       dispatch(showLoading());
-       const response = await axios.post('/api/user/login',values)
+       const response = await instance.post('/api/user/login',values)
        if(response.data.success){
           toast.success(response.data.message)
           localStorage.setItem('token',response.data.token)

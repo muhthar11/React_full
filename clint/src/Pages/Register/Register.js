@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
 import { useState } from "react";
+import instance from "../../Api/axios";
 
 function Register() {
 
@@ -51,7 +52,7 @@ function Register() {
       const base64 = await convertBase64(values.image)
       values.image = base64
       console.log("form data:", values);
-      const response = await axios.post("/api/user/register", values);
+      const response = await instance.post("/api/user/register", values);
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);

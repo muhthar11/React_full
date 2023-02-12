@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import Sidebar from "../../Components/Sidebar";
 import UserApplicationDetails from "../../Components//UserApplicationDetails";
 import { showLoading, hideLoading } from "../../Redux/alertSlice";
+import instance from "../../Api/axios";
 
 function Home() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function Home() {
   const getData = async () => {
     try {
       dispatch(showLoading());
-      await axios
+      await instance
         .post(
           "/api/user/get-user-info-by-id",
           {},
